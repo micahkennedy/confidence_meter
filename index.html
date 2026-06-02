@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidence Meter</title>
+</head>
+<body style="margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background:white;">
+<div style="max-width:700px; margin:0 auto; padding:20px; box-sizing:border-box; color:#222;">
+<div style="border-left:6px solid #8D5BC2; padding-left:18px;">
+<div style="font-size:26px; font-weight:800; line-height:1.25; margin-bottom:18px;">How confident are you feeling on this topic?</div>
+<div style="position:relative; padding:0 10px;">
+<div style="position:absolute; left:32px; right:32px; top:22px; height:2px; background:#D9DDE3;"></div>
+<div style="display:flex; justify-content:space-between; position:relative;">
+<button onclick="submitConfidence(1,this)" style="width:46px; height:46px; border-radius:50%; border:2px solid #D9DDE3; background:#FFFFFF; cursor:pointer; font-size:18px;">1</button>
+<button onclick="submitConfidence(2,this)" style="width:46px; height:46px; border-radius:50%; border:2px solid #D9DDE3; background:#FFFFFF; cursor:pointer; font-size:18px;">2</button>
+<button onclick="submitConfidence(3,this)" style="width:46px; height:46px; border-radius:50%; border:2px solid #D9DDE3; background:#FFFFFF; cursor:pointer; font-size:18px;">3</button>
+<button onclick="submitConfidence(4,this)" style="width:46px; height:46px; border-radius:50%; border:2px solid #D9DDE3; background:#FFFFFF; cursor:pointer; font-size:18px;">4</button>
+<button onclick="submitConfidence(5,this)" style="width:46px; height:46px; border-radius:50%; border:2px solid #D9DDE3; background:#FFFFFF; cursor:pointer; font-size:18px;">5</button>
+</div>
+<div style="display:flex; justify-content:space-between; font-size:14px; color:#555; margin-top:8px;">
+<span>Not confident</span>
+<span>Very confident</span>
+</div>
+</div>
+<div id="confirmation" style="display:none; margin-top:14px; font-size:14px; color:#8D5BC2; font-weight:700;">Response saved.</div>
+</div>
+</div>
+<script>
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+function submitConfidence(score,button){
+const buttons=document.querySelectorAll("button");
+buttons.forEach(function(btn){
+btn.style.background="#FFFFFF";
+btn.style.border="2px solid #D9DDE3";
+btn.style.color="#222";
+});
+button.style.background="#8D5BC2";
+button.style.border="2px solid #8D5BC2";
+button.style.color="#FFFFFF";
+document.getElementById("confirmation").style.display="block";
+fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:"How confident are you feeling on this topic?",score:score,timestamp:new Date().toISOString(),page:window.location.href})});
+}
+</script>
+</body>
+</html>
