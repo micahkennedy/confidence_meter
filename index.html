@@ -39,7 +39,15 @@ button.style.background="#8D5BC2";
 button.style.border="2px solid #8D5BC2";
 button.style.color="#FFFFFF";
 document.getElementById("confirmation").style.display="block";
-fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:"How confident are you feeling on this topic?",score:score,timestamp:new Date().toISOString(),page:window.location.href})});
+fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},const params = new URLSearchParams(window.location.search);
+const lesson = params.get("lesson") || "Unknown";
+
+body: JSON.stringify({
+  lesson: lesson,
+  question: "How confident are you feeling on this topic?",
+  score: score,
+  timestamp: new Date().toISOString()
+})});
 }
 </script>
 </body>
