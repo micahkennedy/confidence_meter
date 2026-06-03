@@ -28,6 +28,9 @@
 </div>
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkTWVzsTjoHgtsQZyjzVxC_lZhqoxVxJQnlaE9d4HfFaYSRVAi3lLwXv1efKNIWymfAA/exec";
+const params = new URLSearchParams(window.location.search);
+const lesson = params.get("lesson") || "Unknown";
+
 function submitConfidence(score,button){
 const buttons=document.querySelectorAll("button");
 buttons.forEach(function(btn){
@@ -39,15 +42,17 @@ button.style.background="#8D5BC2";
 button.style.border="2px solid #8D5BC2";
 button.style.color="#FFFFFF";
 document.getElementById("confirmation").style.display="block";
-fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},const params = new URLSearchParams(window.location.search);
-const lesson = params.get("lesson") || "Unknown";
-
-body: JSON.stringify({
-  lesson: lesson,
-  question: "How confident are you feeling on this topic?",
-  score: score,
-  timestamp: new Date().toISOString()
-})});
+fetch(GOOGLE_SCRIPT_URL,{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+lesson:lesson,
+question:"How confident are you feeling on this topic?",
+score:score,
+timestamp:new Date().toISOString()
+})
+});
 }
 </script>
 </body>
