@@ -29,7 +29,7 @@
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkTWVzsTjoHgtsQZyjzVxC_lZhqoxVxJQnlaE9d4HfFaYSRVAi3lLwXv1efKNIWymfAA/exec";
 const params = new URLSearchParams(window.location.search);
-const lesson = params.get("lesson") || "Unknown";
+const page = params.get("lesson") || "Unknown";
 
 function submitConfidence(score, button) {
 const buttons = document.querySelectorAll("button");
@@ -49,7 +49,7 @@ headers: {
 "Content-Type": "application/json"
 },
 body: JSON.stringify({
-lesson: lesson,
+page: page,
 question: "How confident are you feeling on this topic?",
 score: score,
 timestamp: new Date().toISOString()
