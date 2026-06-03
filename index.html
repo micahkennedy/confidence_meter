@@ -30,7 +30,7 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkTWVzsTjoHgtsQZyjzVxC_lZhqoxVxJQnlaE9d4HfFaYSRVAi3lLwXv1efKNIWymfAA/exec";
 const params = new URLSearchParams(window.location.search);
 const page = params.get("page") || "Unknown";
-
+  
 function submitConfidence(score, button) {
 const buttons = document.querySelectorAll("button");
 buttons.forEach(function(btn) {
